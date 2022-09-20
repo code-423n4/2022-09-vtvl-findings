@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Czar102",
+  "address": "0x52cac9f2df3068107c95db3acf3f6b1256d75e45",
+  "risk": "2",
+  "title": "Reentrancy may allow an admin to steal funds",
+  "issueId": 6,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/6"
+}
