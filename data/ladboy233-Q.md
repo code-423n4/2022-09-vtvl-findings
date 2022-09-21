@@ -70,3 +70,56 @@ We recommand write
 ```
  contract VTVLVesting is AccessProtected {
 ```
+
+## admin can revoke the access of the admin itself and leaving the project with no admin
+
+while the admin address is set to msg.sender of the smart contact AccessProtected
+
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/AccessProtected.sol#L17
+
+```
+    constructor() {
+        _admins[_msgSender()] = true;
+        emit AdminAccessSet(_msgSender(), true);
+    }
+```
+
+the admin can set the admin address itself to false.
+
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/AccessProtected.sol#L39
+
+```
+    function setAdmin(address admin, bool isEnabled) public onlyAdmin {
+        require(admin != address(0), "INVALID_ADDRESS");
+        _admins[admin] = isEnabled;
+        emit AdminAccessSet(admin, isEnabled);
+    }
+```
+
+the admin have access to a lot of high privileged function to keep the project functioning.
+
+So leaving the project with no admin can have bad or unintended effects.
+
+we recommand not let admin revoke the access itself
+
+by adding 
+
+```
+ require(admin != msg.sender, "invalid address")
+```
+
+code
+
+```
+    function setAdmin(address admin, bool isEnabled) public onlyAdmin {
+        require(admin != msg.sender, "invalid address");
+        require(admin != address(0), "INVALID_ADDRESS");
+        _admins[admin] = isEnabled;
+        emit AdminAccessSet(admin, isEnabled);
+    }
+```
+
+
+
+
+
