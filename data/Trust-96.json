@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Trust",
+  "address": "0x2fca32d86d133394f6548028a31b95adf3cc5efc",
+  "risk": "3",
+  "title": "Total supply in VariableSupplyERC20 token is unlimited, and not bound to intended maxSupply.",
+  "issueId": 96,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/96"
+}
