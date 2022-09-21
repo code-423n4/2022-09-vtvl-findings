@@ -1,0 +1,4 @@
+- The check `require(amount <= mintableSupply, "INVALID_AMOUNT");` in `VariableSupplyERC20Token.mint` is unnecessary, because the subtraction on the next line will underflow anyways if this is not true.
+- Decrementing the variable `mintableSupply` in `VariableSupplyERC20Token.mint` is not necessary. The remaining mintable supply could always be calculated based on the `initialSupply_` (if it would be stored), the maximum supply and the already minted tokens (standard ERC20 variable `_totalSupply`). The remaining supply is then `maxSupply_ - _totalSupply + initialSupply_`. 
+- In `VTVLVesting.sol:353`, the loop iteration can be marked as `unchecked` because an overflow is not possible (as the iterator is bounded) and `i++` can be replaced with `++i`.
+- Custom errors could be used instead of string error reasons to save gas.
