@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "adriro",
+  "address": "0xe32b9c1f97a226e809e96a73b66b11308435ae2d",
+  "risk": "2",
+  "title": "Minting issue in VariableSupplyERC20Token",
+  "issueId": 21,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/21"
+}
