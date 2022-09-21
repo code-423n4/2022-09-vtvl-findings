@@ -171,6 +171,8 @@ Consider splitting the ```require()``` statements to save gas.
 
 #### Findings:
 ```
+contracts/VTVLVesting.sol:L270        require( 
+
 contracts/VTVLVesting.sol:L344        require(_startTimestamps.length == length &&
 
 ```
