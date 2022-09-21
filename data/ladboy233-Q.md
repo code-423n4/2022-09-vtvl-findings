@@ -1,3 +1,16 @@
+## Confusing and misleading variable name in VariableSupplyERC20Token.sol
+
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/token/VariableSupplyERC20Token.sol#L19
+
+```
+     @param maxSupply_ - What's the maximum supply. The contract won't allow minting over this amount. Set to 0 for no limit.
+```
+
+the variable maxSupply is used as the supply amount that can be minted, not used to restrict the total supply,
+
+we recommand the project change the name from maxSupply to mintable supply.
+
+
 ## Lack of sufficient testing for FullPermintERC20Token.sol and in VariableSupplyERC20Token.sol
 
 the test use TestERC20Token.sol to conduct the test,
