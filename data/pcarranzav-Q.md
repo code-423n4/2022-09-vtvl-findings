@@ -7,15 +7,13 @@ separately. Other than that, I think the code looks clean, and I appreciate the 
 
 ## Using uint112 for amounts
 
-Is there a strong reason for using the unusual type uint112? I don't really see a clear advantage,
-and I suspect the gas gains are low (if any). Using uint256 everywhere simplifies checks
-for overflows/underflows, and I believe using the native type for the EVM will be safer
+Is there a strong reason for using the unusual type uint112? If it's only for gas, I believe using the native type for the EVM could be safer
 and more convenient in the long run.
 
-Keep in mind tokens might use various values for the token decimals, so having the largest possible
+Keep in mind different tokens might want to use various values for the token decimals, so having the largest possible
 number type could give founders more flexibility when designing the token.
 
-(I haven't checked my claim about gas, so maybe having a much smaller Claim struct provides a big improvement, in which case please ignore this)
+Changing everything to uint256 does produce a 10-20% gas increase in some functions, so I understand if you prefer to keep it this way. Even using uint128 could make things a bit safer and more flexible, and this barely introduces a gas increase compared to uint112. In any case I'd recommend documenting the reason for this decision so that it's clearer when looking at the code.
 
 ## Name of the Claimed event
 
