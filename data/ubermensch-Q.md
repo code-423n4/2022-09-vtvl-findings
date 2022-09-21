@@ -22,3 +22,14 @@ https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b83
 
 ### Recommended Mitigation Steps
 It is recommended to add a restriction that will revert the transaction if the `setAdmin` call is going to remove all the admins of the contract.
+
+
+## Floating Pragma
+### Impact
+The floating-point pragma `0.8.14` is used in the contract. When deploying contracts, the same compiler version should be used. By locking the pragma, you may prevent contracts from being mistakenly deployed using a different pragma, which in certain situations, might be an outdated one, which could cause issues for the contract system.
+
+### Proof of Concept
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/token/VariableSupplyERC20Token.sol#L2
+
+### Recommended Mitigation Steps
+Consider locking the pragma version. It is recommended to not utilize the floating pragma in production.
