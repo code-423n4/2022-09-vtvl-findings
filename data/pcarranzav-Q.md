@@ -1,7 +1,7 @@
 # Summary
 
 I've reviewed all of the Solidity code in scope, and found what I believe are two Medium severity issues that I've reported
-separately. Other than that, I think the code is clean and simple, and I appreciate the minimal design for the vesting contract. Here I'll just present some non-critical suggestions that I think could help improve the code's readability and maintainability.
+separately. Other than that, I think the code looks clean, and I appreciate the minimal design for the vesting contract. Here I'll just present some non-critical suggestions that I think could help improve the code's readability and maintainability.
 
 # Non-critical findings
 
