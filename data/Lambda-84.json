@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Lambda",
+  "address": "0xefc711b22f4fdbcbc221ac7c116e90c699d0b708",
+  "risk": "2",
+  "title": "When tokens with multiple entrypoints are used, the whole token balance can be withdrawn",
+  "issueId": 84,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/84"
+}
