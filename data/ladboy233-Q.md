@@ -1,3 +1,26 @@
+## Lack of sufficient testing for FullPermintERC20Token.sol and in VariableSupplyERC20Token.sol
+
+the test use TestERC20Token.sol to conduct the test,
+
+but integration test and unit test for FullPermintERC20Token.sol and in VariableSupplyERC20Token.sol is needed.
+
+for example, in the code, 
+
+the initial supply is 1000
+
+because in the TestERC20Token.sol, the supply is multiple by decimals.
+
+```
+    uint256 supplyToMint = initialSupply_ * (10 ** decimals());
+```
+
+but in FullPermintERC20Token.sol and in VariableSupplyERC20Token.sol
+
+there is no such multiplication. 
+
+So please make sure we multiple by decimals before passing 
+into the constructor of FullPermintERC20Token.sol and in VariableSupplyERC20Token.sol
+
 ## USE OF FLOATING PRAGMA
 
 Contracts should be deployed with the same compiler version and flags that they have been tested with thoroughly. Locking the pragma helps to ensure that contracts do not accidentally get deployed using, for example, an outdated compiler version that might introduce bugs that affect the contract system negatively.
