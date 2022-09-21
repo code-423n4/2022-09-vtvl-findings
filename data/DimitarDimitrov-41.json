@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "DimitarDimitrov",
+  "address": "0x6e8cd81029361d213b8d2d5b2d2064384618fd1f",
+  "risk": "2",
+  "title": "Check in mint() can broke",
+  "issueId": 41,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/41"
+}
