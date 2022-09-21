@@ -11,6 +11,11 @@ https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b83
 It should be a transparent information when the admin withdraws ERC20 tokens from the contract. 
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L446
 
+# N-04 Missing Natspec - Author , Title of the contract 
+Author and Title are an important information for contract users and stakeholders. 
+Consider adding it 
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L11
+
 # L-01 Open TODOS
 
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L266
