@@ -58,6 +58,12 @@ https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b83
 ```
         for (uint256 i = 0; i < length; i++) {
 ```
+
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L27
+
+```
+    uint112 public numTokensReservedForVesting = 0;
+```
     
 ## Use Customized error and revert instead of require to save gas
 
