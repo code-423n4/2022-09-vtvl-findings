@@ -12,6 +12,14 @@ require(_releaseIntervalsSecs.length == length ,"ARRAY_LENGTH_MISMATCH");
 require(_linearVestAmounts.length == length ,"ARRAY_LENGTH_MISMATCH");
 require(_cliffAmounts.length == length,  "ARRAY_LENGTH_MISMATCH");
 
+[VTVLVesting.sol#L270](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L270)
+
+require((_cliffReleaseTimestamp >= 0 , "INVALID_CLIFF");
+require( _cliffAmount >= 0 , "INVALID_CLIFF");
+require(_cliffReleaseTimestamp <= _startTimestamp, "INVALID_CLIFF");
+   
+
+
 ## 2.DEFAULT VALUE INITIALIZATION
 
 ### PROBLEM
