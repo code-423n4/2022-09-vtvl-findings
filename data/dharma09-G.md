@@ -5,20 +5,24 @@ Instances include:
 [VTVLVesting.sol#L344](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L344)
 
 Change :    
+```
 require(_startTimestamps.length == length ,"ARRAY_LENGTH_MISMATCH");
 require( _endTimestamps.length == length ,"ARRAY_LENGTH_MISMATCH");
 require( _cliffReleaseTimestamps.length == length  ,"ARRAY_LENGTH_MISMATCH");
 require(_releaseIntervalsSecs.length == length ,"ARRAY_LENGTH_MISMATCH");
 require(_linearVestAmounts.length == length ,"ARRAY_LENGTH_MISMATCH");
 require(_cliffAmounts.length == length,  "ARRAY_LENGTH_MISMATCH");
+```
 
 [VTVLVesting.sol#L270](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L270)
 
 I suggest changing > 0 with != 0 here:
 
+```
 require((_cliffReleaseTimestamp =! 0 , "INVALID_CLIFF");
 require( _cliffAmount =! 0 , "INVALID_CLIFF");
 require(_cliffReleaseTimestamp <= _startTimestamp, "INVALID_CLIFF");
+```
    
 ## 2.DEFAULT VALUE INITIALIZATION
 
@@ -54,3 +58,11 @@ Instances include:
 [VTVLVesting.sol#L263](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L263)
 
 [VariableSupplyERC20Token.sol#L27](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L27)
+
+## 4.USING PRIVATE RATHER THAN PUBLIC FOR `immutable`, SAVES GAS
+
+Instances:
+[VTVLVesting.sol#L17](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L17)
+```
+IERC20 public immutable tokenAddress;
+```
