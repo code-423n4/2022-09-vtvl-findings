@@ -12,6 +12,7 @@
     - [**7. Reduce Inheritance**](#7-reduce-inheritance)
     - [**8. Remove unnecessary variables**](#8-remove-unnecessary-variables)
     - [**9. Use the unchecked keyword**](#9-use-the-unchecked-keyword)
+    - [**10. Optimize hasActiveClaim**](#10-optimize-hasactiveclaim)
 
 # Gas
 
@@ -311,3 +312,27 @@ When an underflow or overflow cannot occur, one might conserve gas by using the 
 
 - [VTVLVesting.sol:377](https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L377)
 - [VTVLVesting.sol:429](https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L429)
+
+## **10. Optimize `hasActiveClaim`**
+
+There is no need to check the `startTimestamp` in `hasActiveClaim` because if `isActive` is true, `startTimestamp` always will be different than 0.
+
+```diff
+    modifier hasActiveClaim(address _recipient) {
+        Claim storage _claim = claims[_recipient];
+-       require(_claim.startTimestamp > 0, "NO_ACTIVE_CLAIM");
+
+        // We however still need the active check, since (due to the name of the function)
+        // we want to only allow active claims
+        require(_claim.isActive == true, "NO_ACTIVE_CLAIM");
+
+        // Save gas, omit further checks
+        // require(_claim.linearVestAmount + _claim.cliffAmount > 0, "INVALID_VESTED_AMOUNT");
+        // require(_claim.endTimestamp > 0, "NO_END_TIMESTAMP");
+        _;
+    }
+```
+
+**Affected source code:**
+
+- [VTVLVesting.sol:107](https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L107)
