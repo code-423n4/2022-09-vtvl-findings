@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "0xmatt",
+  "address": "0xE6d324a6B7904160ACEa6144cc80809dbF337F55",
+  "risk": "3",
+  "title": "VariableSupplyERC20Token maxSupply_ limit bypass",
+  "issueId": 45,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/45"
+}
