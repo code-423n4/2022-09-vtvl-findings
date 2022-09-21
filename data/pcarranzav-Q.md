@@ -83,3 +83,34 @@ https://github.com/code-423n4/2022-09-vtvl/blob/26dda235d38d0f870c1741c9f7eef032
 
 The VariableSupplyERC20Token comments specify that being able to burn tokens could break the vesting contracts.
 If only the owner of certain tokens can burn them, there is no way to burn any tokens on the vesting contract without first withdrawing them. Therefore, I think it'd be safe to make the token burnable.
+
+## Setting the first admin to msg.sender
+
+https://github.com/code-423n4/2022-09-vtvl/blob/26dda235d38d0f870c1741c9f7eef03229172bbe/contracts/AccessProtected.sol#L16-L19
+
+I think this sets some unnecessary restrictions to how this contract can be deployed - for composability, it might be desirable to e.g. deploy this contract from another contract, in which case setting the admin to msg.sender will make the contract inoperable. Or a user might want to use a deployer account that is separate from the account used to administer the funds,
+in which case two more transactions are needed to add the new admin and remove the deployer.
+
+Making this more flexible only adds a bit more gas on the deployment, so I'd recommend changing the constructor to allow specifying a separate address for the first admin:
+
+```solidity
+    constructor(address initialAdmin) {
+        require(initialAdmin != address(0), "!ADMIN");
+        _admins[initialAdmin] = true;
+        emit AdminAccessSet(initialAdmin, true);
+    }
+```
+
+(You'd then need to modify any contracts that inherit this to call the constructor accordingly)
+
+Or if you still want to default to msg.sender, you can allow passing a zero address to initialAdmin:
+
+```solidity
+    constructor(address initialAdmin) {
+        if (initialAdmin == address(0)) {
+            initialAdmin = _msgSender();
+        }
+        _admins[initialAdmin] = true;
+        emit AdminAccessSet(initialAdmin, true);
+    }
+```
