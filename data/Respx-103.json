@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Respx",
+  "address": "0x006949f2f1b70d35afda9ded6cb9f3e152fa031b",
+  "risk": "2",
+  "title": "One Rogue Admin Can Remove All Others",
+  "issueId": 103,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/103"
+}
