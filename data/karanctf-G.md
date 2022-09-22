@@ -59,7 +59,3 @@ VTVLVesting.sol:381:        usrClaim.amountWithdrawn += amountRemaining;
 VTVLVesting.sol:383:        numTokensReservedForVesting -= amountRemaining;
 VTVLVesting.sol:433:        numTokensReservedForVesting -= amountRemaining; // Reduces the allocation
 ```
-## [G-8] 10eX use less gas then 10**X
-```solidity
-test/TestERC20Token.sol:9:        uint256 supplyToMint = initialSupply_ * (10 ** decimals());
-```
