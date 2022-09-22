@@ -16,8 +16,9 @@ When arguments are read-only on external functions, the data location should be 
 
 ## ADD UNCHECKED {} FOR SUBTRACTIONS WHERE THE OPERANDS CANNOT UNDERFLOW BECAUSE OF A PREVIOUS REQUIRE() OR IF-STATEMENT
 
-5 Instances:
--VTVLVesting.sol lines 167, 170, 264, 337, 429, 
+6 Instances:
+-VTVLVesting.sol lines 167, 170, 264, 337, 429
+-VariableSupplyERC20Token.sol line 43
 
 ## `++I` INSTEAD OF `I++` (OR USE ASSEMBLY WHEN APPLICABLE)
 
