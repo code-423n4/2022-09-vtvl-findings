@@ -54,7 +54,22 @@ The order of function will also have an impact on gas consumption. Because in sm
 https://medium.com/joyso/solidity-how-does-function-name-affect-gas-consumption-in-smart-contract-47d270d8ac92
 
 ## Activate the Optimizer
-Before deploying your contract, activate the optimizer when compiling using “solc --optimize --bin sourceFile.sol”. By default, the optimizer will optimize the contract assuming it is called 200 times across its lifetime. If you want the initial contract deployment to be cheaper and the later function executions to be more expensive, set it to “ --optimize-runs=1”. Conversely, if you expect many transactions and do not care for higher deployment cost and output size, set “--optimize-runs” to a high number. Please visit the following site for further information:
+Before deploying your contract, activate the optimizer when compiling using “solc --optimize --bin sourceFile.sol”. By default, the optimizer will optimize the contract assuming it is called 200 times across its lifetime. If you want the initial contract deployment to be cheaper and the later function executions to be more expensive, set it to “ --optimize-runs=1”. Conversely, if you expect many transactions and do not care for higher deployment cost and output size, set “--optimize-runs” to a high number. 
+
+```
+module.exports = {
+  solidity: {
+    version: "0.8.14",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000,
+      },
+    },
+  },
+};
+```
+Please visit the following site for further information:
 
 https://docs.soliditylang.org/en/v0.5.4/using-the-compiler.html#using-the-commandline-compiler
 
@@ -86,5 +101,19 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
 ```
                 vestAmt = vestAmt + _claim.cliffAmount;
 ```
+## Use != 0 Instead of > 0 for Unsigned Integer Comparison
+`! = 0` costs 6 less GAS compared to `> 0` for unsigned integers in require statements with the optimizer enabled. Here are some of the instances entailed:
 
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L31
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L40
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L257
 
+## Split Require Statements Using &&
+Instead of using the `&&` operator in a single require statement to check multiple conditions, using multiple require statements with 1 condition per require statement will save 3 GAS per `&&`. Here are some of the instances entailed:
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L344-L351
+
+## Short Circuit Expensive Operations
+Short-circuiting works by ordering the lower-cost operation first so that the higher-cost operation is skipped if the first operation evaluates to true. Here's an instance entailed:
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L270-L278
