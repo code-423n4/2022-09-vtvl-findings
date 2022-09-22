@@ -172,3 +172,11 @@ if(bal ==0) revert InsufficientBalance();
 ```
 
 NOTE: As you can see some custom errors can be re-used saving even more gas compared to the reason `string` given inside `require` statements, that are re-written every time.
+
+14. The `for` loop inside the `createClaimsBatch()` function uses post-increment to the variable `i`, like so:
+
+`for (uint256 i = 0; i < length; i++) {...}`
+
+Replace the post-increment with pre-increment to save 6 gas for each `i` in the loop.
+
+`for (uint256 i = 0; i < length; ++i) {...}`
