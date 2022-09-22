@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "0x52",
+  "address": "0x522dffc539c264a8f7e0b91102e899b33f4dabc3",
+  "risk": "2",
+  "title": "revokeClaim allows admin to retroactively remove user tokens that are already vested but not claimed",
+  "issueId": 159,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/159"
+}
