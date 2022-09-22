@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "pashov",
+  "address": "0x1797c3bcebf8c858a916fcbbd0359f65f5484915",
+  "risk": "2",
+  "title": "Missing endTimestamp validation can lead to funds vested immediately to user",
+  "issueId": 192,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/192"
+}
