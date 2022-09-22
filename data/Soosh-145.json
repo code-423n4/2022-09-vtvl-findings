@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Soosh",
+  "address": "0xdfb7c8bee3f61b6a2f7c616f850613436b7a747f",
+  "risk": "2",
+  "title": "Maximum supply is not enforced",
+  "issueId": 145,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/145"
+}
