@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "pashov",
+  "address": "0x1797c3bcebf8c858a916fcbbd0359f65f5484915",
+  "risk": "3",
+  "title": "Tokens with lower number of decimals can result in postponed linear vesting for user",
+  "issueId": 191,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/191"
+}
