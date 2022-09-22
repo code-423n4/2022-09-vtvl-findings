@@ -146,7 +146,7 @@ Becomes:
       numTokensReservedForVesting -= amountRemaining;
     }
 
-# 5. [G-5] Cache read variables in memory
+# 5. [G-5] Cache read variables in memory to save gas
 
  File VTVLVesting.sol, line 106:
 
