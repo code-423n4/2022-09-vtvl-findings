@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "rotcivegaf",
+  "address": "0xba910716fd4b6b4447aea613993898eeb63844ad",
+  "risk": "2",
+  "title": "Cannot create more than one claim per recipient and when finish/revoke a claim cannot create one new with the same recipient",
+  "issueId": 175,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/175"
+}
