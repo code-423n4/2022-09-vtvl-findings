@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "0xdapper",
+  "address": "0xe5508496e06583da360670ce4aa4024a01e9861b",
+  "risk": "2",
+  "title": "Revocations forbid users from already vested but not withdrawn amounts",
+  "issueId": 166,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/166"
+}
