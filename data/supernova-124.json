@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "supernova",
+  "address": "0x1b37b1ec6b7faacbb9addcca4043824f36fb88d8",
+  "risk": "2",
+  "title": "Revoked Recipient cannot be made a claimant again . ",
+  "issueId": 124,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/124"
+}
