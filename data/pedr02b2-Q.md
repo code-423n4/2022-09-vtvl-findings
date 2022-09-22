@@ -24,8 +24,8 @@ I was not sure what level to report this as I am still learning so I have left i
 
 Only check _linerVestAmount is > 0, as your only ever going to return if said amount it greater than 0, this does not return a check for _cliffAmount  (this should return a value of INVALID_CLIFF_AMOUNT as well to return a check on both values) even though your asking for a check to be carried out on _linearVestAmount + _cliffAmount, return a value for both "INVALID_VESTED_AMOUNT + INVALID_CLIFF_AMOUNT" if they are both invalid, 
 
-however I also noted that there is the possibilty for _cliffAmount to not be zero also noted by the dev cliffAmount - The amount released at _cliffReleaseTimestamp. Can be 0 if _cliffReleaseTimestamp is also 0, what if _cliffReleaseTimestamp is not 0....the above logic will break it would be safer to do a check on just _linearVestAmount otherwise there is a possibility that the _createClaimUnchecked will simply revert "INVALID_VESTED_AMOUNT" which could also be confusing as there wil be nothing to say it was actually _cliffAmount not being 0 that was the reason for the failure.
- 
+however I also noted that there is the possibilty for _cliffAmount to not be zero if there is vesting??? (_cliffReleaseTimestamp - The timestamp when the cliff is released (must be <= _startTimestamp, or 0 if no vesting)) also noted by the dev cliffAmount - The amount released at _cliffReleaseTimestamp. Can be 0 if _cliffReleaseTimestamp is also 0, what if _cliffReleaseTimestamp is not 0 and there is vesting .. would be safer to do a check on just _linearVestAmount as noted by the dev so that claim creation cannot break accidentelty or otherwise
+
 Also checking just the one value will make the contract slightly cheaper to deploy decreasing overall cost on the life cycle of the project.
 
 line256 VTVLvesting.sol
