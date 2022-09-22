@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "datapunk",
+  "address": "0x13d75851Ba4BC661c8d0e10B7f51bBf95A3e448e",
+  "risk": "3",
+  "title": "DoubleEntryPoint token can result in rug pull through withdrawOtherToken(...)",
+  "issueId": 106,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/106"
+}
