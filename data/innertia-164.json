@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "innertia",
+  "address": "0x0b872cff018d04f77965c65029a67c9c61da606c",
+  "risk": "2",
+  "title": "Can mint over maxSupply",
+  "issueId": 164,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/164"
+}
