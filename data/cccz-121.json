@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "cccz",
+  "address": "0x74d754378a59ab45d3e6cac83f0b87e8e8719270",
+  "risk": "2",
+  "title": "revokeClaim can be frount-fun",
+  "issueId": 121,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/121"
+}
