@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Ruhum",
+  "address": "0x1708bdfa333f81993a1edcfec6821a3ec563ea06",
+  "risk": "2",
+  "title": "Limiting each address to only have a single claim limits functionality of contract",
+  "issueId": 179,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/179"
+}
