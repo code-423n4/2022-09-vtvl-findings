@@ -1,20 +1,18 @@
-# **Gas Optimizations**
-
 ## **FullPremintERC20Token.sol**
 
-1. The `FullPremintERC20Token` contract can be refactored for gas optimizations:
+1. The `FullPremintERC20Token` contract can be refactored by replacing the `require` statement inside the constructor with an `if` statement and a custom error:
 
 ```
 contract FullPremintERC20Tokem is ERC20 {
     constructor(string memory name_, string memory symbol_, uint256 supply_) ERC20(name_, symbol_) {
-        require(supply_ > 0, "NO_ZERO_MINT");
+        `require`(supply_ > 0, "NO_ZERO_MINT");
         _mint(_msgSender(), supply_);
     }
 }
 // GAS DEPLOYMENT COST => 1186340
 ```
 
-This is a more effective way of declaring custom errors while saving some gas. Here the same contract sames almost 2,000 gas:
+As shown, the same contract saves almost 2,000 gas with this optimization:
 
 ```
 contract FullPremintERC20Token is ERC20 {
@@ -28,9 +26,35 @@ contract FullPremintERC20Token is ERC20 {
 // GAS DEPLOYMENT COST => 1184736
 ```
 
+NOTE: The majority of the following optimizations refers to the exact same case of require-if statements.
+
+## **AccessProtected.sol**
+
+2. The `onlyAdmin()` function modifier can be refactored. The `require` statement can be replaced with an`ìf` statement and a custom error. Declare error:
+
+`error AdminAccessRequired();`
+
+Replace line 25 with:
+
+```
+if(!_admins[_msgSender()) revert AdminAccessRequired();
+```
+
+3. The `setAdmin()` function can be refactored. The `require` statement can be replaced with an`ìf` statement and a custom error. Declare error:
+
+`error InvalidAddress();`
+
+Replace line 25 with:
+
+```
+if(admin == address(0)) revert InvalidAddress();
+```
+
+NOTE: As it will be demonstrated on following optimizations, the error `InvalidAddress()` can be used on `VariableSupplyERC20Token` and `VariableSupplyERC20Token` and both of these contracts inherit from `AccessProtected` contract. This makes the optimization greater because the error is declared just once and used in three contracts..
+
 ## **VariableSupplyERC20Token.sol**
 
-2. The following require statement on line 27 can be refactored in a way that saves gas using custom errors. Declare error:
+4. The `require` statement on line 27 can be refactored by replacing the `require` statement with an `if` statement and a custom error. Declare error:
 
    `error InvalidAmount();`
 
@@ -38,28 +62,21 @@ contract FullPremintERC20Token is ERC20 {
 
    `if (initialSupply_ == 0 || maxSupply_ == 0) revert InvalidAmount();`
 
-3. The following require statement on line 37 can be refactored in a way that saves gas using custom errors. Declare error:
-
-   `error InvalidAdddress();`
-
-   and replace line 37 with:
+5. The `require` statement on line 37 can be refactored by replacing the `require` statement with an `if` statement and a custom error. Use `InvalidAddress();` error inherited from `AccessProtected.sol` and replace line 37 with:
 
    `if (account == address(0)) revert InvalidAddress();`
 
-4. The following require statement on line 37 can be refactored in a way that saves gas using custom errors. Replace line 41 with:
+6. The `require` statement on line 41 can be refactored by replacing the `require` statement with an `if` statement and a custom error. Use previoulsy declared error and replace line 41 with:
 
    `if (amount > mintableSupply) revert InvalidAmount();`
 
-   NOTE: As you can see here the contracts reuses an existing custom error instead of re-declaring a reason `string` inside a `require` statement.
-
 ## **VTVLVesting.sol**
 
-The require statements for this contract can be refactored. Declare the following errors:
+The `require` statements for this contract can be refactored. Declare the following errors:
 
 ```
 error NoActiveClaim();
 error ClaimAlreadyExists();
-error InvalidAddress();
 error InvalidVestedAmount();
 error InvalidStartTimestamp();
 error InvalidEndTimestamp();
@@ -72,16 +89,16 @@ error NothingToWithdraw();
 error NoUnvestedAmount();
 ```
 
-5. The `constructor` can be refactored for gas optimizations:
+7. The `constructor` on line 81 has a `require` statement that can be refactored like so:
 
 ```
 constructor(IERC20 _tokenAddress) {
-	if(_tokenAddress == 0) revert InvalidAddress();
+	if(address(_tokenAddress) == address(0)) revert InvalidAddress();
 	tokenAddress = _tokenAddress;
 }
 ```
 
-6. The `hasActiveClaim` modifier can be refactored for gas optimizations:
+8. The `hasActiveClaim` modifier on line 105 has two `require` statements that can be refactored like so:
 
 ```
 modifier hasActiveClaim(address _recipient) {
@@ -92,7 +109,7 @@ modifier hasActiveClaim(address _recipient) {
 }
 ```
 
-7. The `hasNoClaim` modifier can be refactored for gas optimizations:
+9. The `hasNoClaim` modifier on line 123 has a `require` statement that can be refactored like so:
 
 ```
 modifier hasNoClaim(address _recipient) {
@@ -102,7 +119,7 @@ modifier hasNoClaim(address _recipient) {
 }
 ```
 
-8. The `_createClaimUnchecked()` function requirements can be refactored for gas optimizations:
+10. The `_createClaimUnchecked()` function on line 245 has eight `require` statements can be refactored like so:
 
 ```
 function _createClaimUnchecked(...) private  hasNoClaim(_recipient) {
@@ -112,8 +129,11 @@ function _createClaimUnchecked(...) private  hasNoClaim(_recipient) {
 	if(_startTimestamp >= _endTimestamp) revert InvalidEndTimestamp();
 	if(_releaseIntervalSecs == 0) revert InvalidReleaseInterval();
 	if(!((_endTimestamp - _startTimestamp) % _releaseIntervalSecs == 0)) revert InvalidIntervalLength();
-	if( _cliffReleaseTimestamp == 0 || _cliffAmount == 0 || cliffReleaseTimestamp > _startTimestamp) revert InvalidCliff();
-	if(_cliffReleaseTimestamp > 0 || _cliffAmount > 0) revert InvalidCliff();
+
+		if (
+			(_cliffReleaseTimestamp == 0 || _cliffAmount == 0 || _cliffReleaseTimestamp > _startTimestamp) ||
+			(_cliffReleaseTimestamp > 0 || _cliffAmount > 0)
+		) revert InvalidCliff();
 
 	Claim memory _claim = Claim({
 		...
@@ -130,7 +150,7 @@ function _createClaimUnchecked(...) private  hasNoClaim(_recipient) {
 
 ```
 
-9. The `createClaimsBatch()` function requirement can be refactored for gas optimizations:
+11. The `createClaimsBatch()` function on line 333 has a `require` statement that can be refactored:
 
 ```
 uint256 length = _recipients.length;
@@ -145,25 +165,25 @@ if(
 ) revert ArrayLengthMismatch();
 ```
 
-10. The `withdraw()` function requirement can be refactored for gas optimizations:
+12. The `withdraw()` function on line 364 has a `require` statement that can be refactored:
 
 ```
 if (allowance <= usrClaim.amountWithdrawn) revert NothingToWithdraw();
 ```
 
-11. The `withdrawAdmin()` function requirement can be refactored for gas optimizations:
+13. The `withdrawAdmin()` function on line 398 has a `require` statement that can be refactored:
 
 ```
 if(amountRemaining < _amountRequested) revert InsufficientBalance();
 ```
 
-12. The `revokeClaim()` function requirement can be refactored for gas optimizations:
+14. The `revokeClaim()` function on line 418 has a `require` statement that can be refactored:
 
 ```
 if(_claim.amountWithdrawn >= finalVestAmt) revert NoUnvestedAmount();
 ```
 
-13. The `withdrawOtherToken()` function requirement can be refactored for gas optimizations:
+15. The `withdrawOtherToken()` function on line 446 has a `require` statement that can be refactored:
 
 ```
 if(_otherTokenAddress == tokenAddress) revert InvalidAddress();
@@ -173,10 +193,10 @@ if(bal ==0) revert InsufficientBalance();
 
 NOTE: As you can see some custom errors can be re-used saving even more gas compared to the reason `string` given inside `require` statements, that are re-written every time.
 
-14. The `for` loop inside the `createClaimsBatch()` function uses post-increment to the variable `i`, like so:
+16. The `for` loop inside the `createClaimsBatch()` function uses post-increment to the variable `i`, like so:
 
 `for (uint256 i = 0; i < length; i++) {...}`
 
-Replace the post-increment with pre-increment to save 6 gas for each `i` in the loop.
+- Replace the post-increment with pre-increment to save 6 gas for each `i` in the loop.
 
 `for (uint256 i = 0; i < length; ++i) {...}`
