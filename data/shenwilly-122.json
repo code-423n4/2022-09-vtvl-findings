@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "shenwilly",
+  "address": "0x8b21033337a7066bcff10fe0b3ca2a9da1c58a1d",
+  "risk": "2",
+  "title": "Compromised admin can take over the contract",
+  "issueId": 122,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/122"
+}
