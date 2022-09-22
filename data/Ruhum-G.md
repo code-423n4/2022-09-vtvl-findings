@@ -5,6 +5,7 @@
 - [G-03: `finalVestedAmount()` doesn't need to compute vested amount](#g-03-finalvestedamount-doesnt-need-to-compute-vested-amount)
 - [G-04: `hasActiveClaim()` doesn't need to check claim's startTimestamp](#g-04-hasactiveclaim-doesnt-need-to-check-claims-starttimestamp)
 - [G-05: `hasActiveClaim()` modifier unnecessary for `withdraw()`](#g-05-hasactiveclaim-modifier-unnecessary-for-withdraw)
+- [G-06: working with uints smaller than 256 is more expensive](#g-06-working-with-uints-smaller-than-256-is-more-expensive)
 
 ## G-01: remove unnecessary require statements that can be caught by overflows
 
@@ -69,3 +70,10 @@ function withdraw() hasActiveClaim(_msgSender()) external {
 ```
 
 Removing the modifier will save you the SLOAD where you check the claim's timestamp/isActive status.
+
+## G-06: working with uints smaller than 256 is more expensive
+
+While packing structs can save gas, it's more expensive to work with uints smaller than 256. The EVM works with 32 byte values. If the value is smaller than that, it has to adjust the size of the element to operate on it. That costs gas. 
+
+For example, in the `_baseVestedAmount()` function you work with uints that are all smaller than 256 bits. Doing the same math with `uint256` and converting to the smaller type at the end should save you gas:
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L147-L187
