@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Asfand",
+  "address": "0xea29891b492bd2bb13ab2a57c35650762d2d38e4",
+  "risk": "2",
+  "title": "_baseVestedAmount() function performs a multiplication on the result of a division.",
+  "issueId": 244,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/244"
+}
