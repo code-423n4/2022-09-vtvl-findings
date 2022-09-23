@@ -136,3 +136,17 @@ require(_recipient != address(0), "INVALID_ADDRESS");
 
 
 ```
+
+
+G-06. Using <X> != 0 instead of <X> > 0 for uint type.
+
+As uint is always a non-zero value, you can save a bit of gas by using != 0 instead of > 0.
+
+```
+File: VTVLVesting.sol
+
+require(_claim.startTimestamp > 0, "NO_ACTIVE_CLAIM");
+require(_linearVestAmount + _cliffAmount > 0, "INVALID_VESTED_AMOUNT"); // Actually only one of linearvested/cliff amount must be 0, not necessarily both
+require(_startTimestamp > 0, "INVALID_START_TIMESTAMP");
+require(_releaseIntervalSecs > 0, "INVALID_RELEASE_INTERVAL");
+```
