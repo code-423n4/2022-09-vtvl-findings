@@ -1,6 +1,7 @@
 # N-01 Public Function which can only be called by admin should be marked as external instead
 
 ##### Instance of the issue :
+
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L398
 # N-02 Variable Names that are immutable should be in Capital Letters
 
@@ -29,4 +30,4 @@ https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b83
 # L-03 vestingRecipients is not updated when a claim is revoked
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L53
 
-The recipient is not deleted from the array when claim is revoked, thereby showing wrong information in the frontend
+The recipient is not deleted from the array when a claim is revoked, thereby showing wrong information in the frontend
