@@ -183,3 +183,13 @@ Code architecture, incentives, and error handling/reporting questions/issues sho
 Recommendation:
 Remove to unused imports from AccessProtected.sol and VTVLVesting.sol
 
+
+## [S-03] Add to isContract function in Constructor
+
+[VTVLVesting.sol#L81](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L81)
+
+**Description:**
+The address specified in the constructor can be an EOA address, the isContract pattern should be used to prevent this.
+
+Recommendation:
+Add OpenZeppelin isContract function check
