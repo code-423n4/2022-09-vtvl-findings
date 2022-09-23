@@ -65,3 +65,15 @@ Instance of this issue:
 ```
 contracts/VTVLVesting.sol#L302        numTokensReservedForVesting += allocatedAmount; // track the allocated amount
 ```
+
+6 - Amount is not validated
+
+Implement the required statement that amount should be greater than 0 in order to save gas.
+
+Instances of this issue:
+
+```
+contracts/token/VariableSupplyERC20Token.sol#L36             function mint(address account, uint256 amount) public onlyAdmin {
+```
+
+ 
