@@ -4,7 +4,7 @@ Variable `mintableSupply` from `VariableSupplyERC20Token.sol` can be made immuta
 
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L11
 
-The `mint` function from said contract can be modified to only mint if the condition `totalSupply() amount + <= mintableSupply` is satisfied.
+The `mint` function from said contract can be modified to only mint if the condition `totalSupply() + amount <= mintableSupply` is satisfied.
 
 ```solidity=
 function mint(address account, uint256 amount) public onlyAdmin {
