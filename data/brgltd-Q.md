@@ -92,7 +92,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/AccessProtected.s
 
 # [NC-07] Repeated validation can be refactored into a single modifier
 
-The checks for validation an input address against address zero can be refactored into a single modifier to improve code reusability.
+The checks for validating an input address against address zero can be refactored into a single modifier to improve code reusability.
 
 ```solidity
 $ git diff --no-index VTVLVesting.sol.orig VTVLVesting.sol
@@ -132,7 +132,23 @@ index 3e10653..42e95b8 100644
 
 ```
 
-# [NC-08] Normalize the spacing for functions with multiple arguments
+# [NC-08] Limit the number of maximum characters per line
+
+Some lines have 120+ characters. Setting a maximum width per line would improve code readbility.
+
+```
+uint40 truncatedCurrentVestingDurationSecs = (currentVestingDurationSecs / _claim.releaseIntervalSecs) * _claim.releaseIntervalSecs;
+```
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L169
+
+```
+event ClaimRevoked(address indexed _recipient, uint112 _numTokensWithheld, uint256 revocationTimestamp, Claim _claim);
+```
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L69
+
+# [NC-09] Normalize the spacing for functions with multiple arguments
 
 ```solidity
 function createclaim(
