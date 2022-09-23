@@ -1,4 +1,53 @@
-## [G-01] `usrClaim.amountWithdrawn` CAN BE CACHED IN MEMORY
+## [G-01] SOME OPERATIONS CAN BE SKIPPED WHEN CLAIM'S `linearVestAmount` IS 0
+It is possible to create a claim with 0 `linearVestAmount`; this is confirmed by the [documentation](https://github.com/code-423n4/2022-09-vtvl#claim) as well, which states: "Each of the parts (cliff and linear) have amounts that can be allocated to each. The founders can opt to use either or both options for each of the claims." When `linearVestAmount` is 0, `vestAmt` would be increased by 0 after executing the operations within the `_referenceTs > _claim.startTimestamp` `if` block in the following `_baseVestedAmount` function. Hence, these operations can be conditionally skipped if `linearVestAmount` is 0 to save gas.
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L147-L188
+```solidity
+    function _baseVestedAmount(Claim memory _claim, uint40 _referenceTs) internal pure returns (uint112) {
+        uint112 vestAmt = 0;
+        
+        // the condition to have anything vested is to be active
+        if(_claim.isActive) {
+            // no point of looking past the endTimestamp as nothing should vest afterwards
+            // So if we're past the end, just get the ref frame back to the end
+            if(_referenceTs > _claim.endTimestamp) {
+                _referenceTs = _claim.endTimestamp;
+            }
+
+            // If we're past the cliffReleaseTimestamp, we release the cliffAmount
+            // We don't check here that cliffReleaseTimestamp is after the startTimestamp 
+            if(_referenceTs >= _claim.cliffReleaseTimestamp) {
+                vestAmt += _claim.cliffAmount;
+            }
+
+            // Calculate the linearly vested amount - this is relevant only if we're past the schedule start
+            // at _referenceTs == _claim.startTimestamp, the period proportion will be 0 so we don't need to start the calc
+            if(_referenceTs > _claim.startTimestamp) {
+                uint40 currentVestingDurationSecs = _referenceTs - _claim.startTimestamp; // How long since the start
+                // Next, we need to calculated the duration truncated to nearest releaseIntervalSecs
+                uint40 truncatedCurrentVestingDurationSecs = (currentVestingDurationSecs / _claim.releaseIntervalSecs) * _claim.releaseIntervalSecs;
+                uint40 finalVestingDurationSecs = _claim.endTimestamp - _claim.startTimestamp; // length of the interval
+
+                // Calculate the linear vested amount - fraction_of_interval_completed * linearVestedAmount
+                // Since fraction_of_interval_completed is truncatedCurrentVestingDurationSecs / finalVestingDurationSecs, the formula becomes
+                // truncatedCurrentVestingDurationSecs / finalVestingDurationSecs * linearVestAmount, so we can rewrite as below to avoid 
+                // rounding errors
+                uint112 linearVestAmount = _claim.linearVestAmount * truncatedCurrentVestingDurationSecs / finalVestingDurationSecs;
+
+                // Having calculated the linearVestAmount, simply add it to the vested amount
+                vestAmt += linearVestAmount;
+            }
+        }
+        
+        // Return the bigger of (vestAmt, _claim.amountWithdrawn)
+        // Rationale: no matter how we calculate the vestAmt, we can never return that less was vested than was already withdrawn.
+        // Case where this could be relevant - If the claim is inactive, vestAmt would be 0, yet if something was already withdrawn 
+        // on that claim, we want to return that as vested thus far - as we want the function to be monotonic.
+        return (vestAmt > _claim.amountWithdrawn) ? vestAmt : _claim.amountWithdrawn;
+    }
+```
+
+## [G-02] `usrClaim.amountWithdrawn` CAN BE CACHED IN MEMORY
 `usrClaim.amountWithdrawn` in the following code can be cached in memory, and the cached value can then be accessed. This can save 2 `sload` operations by using 1 `sload`, 1 `mstore`, and 2 `mload` operations.
 
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L373-L377
@@ -10,7 +59,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         uint112 amountRemaining = allowance - usrClaim.amountWithdrawn;
 ```
 
-## [G-02] BOOLEAN VARIABLE DOES NOT NEED TO BE COMPARED TO BOOLEAN VALUE
+## [G-03] BOOLEAN VARIABLE DOES NOT NEED TO BE COMPARED TO BOOLEAN VALUE
 Comparing a boolean variable to a boolean value costs more gas than directly checking the boolean variable value.
 
 `require(_claim.isActive, "NO_ACTIVE_CLAIM")` can be implemented instead of the following code.
@@ -19,7 +68,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         require(_claim.isActive == true, "NO_ACTIVE_CLAIM");
 ```
 
-## [G-03] ARITHMETIC OPERATIONS THAT DO NOT UNDERFLOW CAN BE UNCHECKED
+## [G-04] ARITHMETIC OPERATIONS THAT DO NOT UNDERFLOW CAN BE UNCHECKED
 Explicitly unchecking arithmetic operations that do not underflow by wrapping these in `unchecked {}` costs less gas than implicitly checking these.
 
 `_referenceTs - _claim.startTimestamp` can be unchecked in the following code because `_referenceTs > _claim.startTimestamp` must be true beforehand.
@@ -47,7 +96,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         uint112 amountRemaining = finalVestAmt - _claim.amountWithdrawn;
 ```
 
-## [G-04] ARITHMETIC OPERATIONS THAT DO NOT OVERFLOW CAN BE UNCHECKED
+## [G-05] ARITHMETIC OPERATIONS THAT DO NOT OVERFLOW CAN BE UNCHECKED
 Explicitly unchecking arithmetic operations that do not overflow by wrapping these in `unchecked {}` costs less gas than implicitly checking these.
 
 For the following loop, `unchecked {++i}` at the end of the loop block can be used, where `i` is the counter variable.
@@ -58,7 +107,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         }
 ```
 
-## [G-05] VARIABLE DOES NOT NEED TO BE INITIALIZED TO ITS DEFAULT VALUE
+## [G-06] VARIABLE DOES NOT NEED TO BE INITIALIZED TO ITS DEFAULT VALUE
 Explicitly initializing a variable with its default value costs more gas than uninitializing it. 
 
 `numTokensReservedForVesting` does not need to be initialized to its default value in the following code.
@@ -75,7 +124,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         }
 ```
 
-## [G-06] ++VARIABLE CAN BE USED INSTEAD OF VARIABLE++
+## [G-07] ++VARIABLE CAN BE USED INSTEAD OF VARIABLE++
 ++variable costs less gas than variable++. For example, `i++` can be changed to `++i` in the following code.
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L353-L355
 ```solidity
@@ -84,7 +133,7 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
         }
 ```
 
-## [G-07] X = X + Y CAN BE USED INSTEAD OF X += Y
+## [G-08] X = X + Y CAN BE USED INSTEAD OF X += Y
 x = x + y costs less gas than x += y. For example, `vestAmt += linearVestAmount` can be changed to `vestAmt = vestAmt + linearVestAmount` in the following code.
 
 ```solidity
@@ -96,7 +145,7 @@ contracts\VTVLVesting.sol
   380: usrClaim.amountWithdrawn += amountRemaining;
 ```
 
-## [G-08] X = X - Y CAN BE USED INSTEAD OF X -= Y
+## [G-09] X = X - Y CAN BE USED INSTEAD OF X -= Y
 x = x - y costs less gas than x -= y. For example, `mintableSupply -= amount` can be changed to `mintableSupply = mintableSupply - amount` in the following code.
 ```solidity
 contracts\VTVLVesting.sol
@@ -108,7 +157,7 @@ contracts\token\VariableSupplyERC20Token.sol
   43: mintableSupply -= amount;
 ```
 
-## [G-09] REVERT WITH CUSTOM ERROR CAN BE USED INSTEAD OF REQUIRE() WITH REASON STRING
+## [G-10] REVERT WITH CUSTOM ERROR CAN BE USED INSTEAD OF REQUIRE() WITH REASON STRING
 `revert` with custom error can cost less gas than `require()` with reason string. Please consider using `revert` with custom error to replace the following `require()`.
 ```solidity
 contracts\AccessProtected.sol
