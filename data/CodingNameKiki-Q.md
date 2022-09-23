@@ -1,3 +1,5 @@
+Low risks: 4
+
 L-01. Input array lengths may differ
 
 If the caller makes a copy-paste error, the lengths may be mismatchd and an operation believed to have been completed may not in fact have been completed
@@ -23,6 +25,8 @@ L-04. Several critical operations do not trigger events, which will make it diff
 
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L446
 
+Non-critical Issues: 4
+
 N-01. Open Todos
 
 Code architecture, incentives, and error handling/reporting questions/issues should be resolved before deployment
@@ -45,3 +49,10 @@ https://docs.soliditylang.org/en/latest/contracts.html#function-overriding
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L398
 https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/AccessProtected.sol#L39
 
+N-04. Commented code
+
+There are portions of commented code in the contracts.
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L114-L115
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L136-L138
+https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L261
