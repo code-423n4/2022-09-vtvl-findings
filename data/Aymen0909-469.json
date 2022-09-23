@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Aymen0909",
+  "address": "0xbea9a04e1b82a3f6ad01ea8f5b43622f95f3f353",
+  "risk": "2",
+  "title": "Risk of losing Administrators functionalities when using `AccessProtected`",
+  "issueId": 469,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/469"
+}
