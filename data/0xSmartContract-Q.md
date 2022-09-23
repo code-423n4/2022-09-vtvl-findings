@@ -161,7 +161,7 @@ https://etherscan.io/address/0xe4e4003afe3765aca8149a82fc064c0b125b9e5a#code
 Recommended Mitigation Steps add to Blacklist function and modifier
 
 
-
+## Suggestions
 ## [S-01] Remove TODO
 
 **Context:**
@@ -172,4 +172,14 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
 Code architecture, incentives, and error handling/reporting questions/issues should be resolved before deployment
 
 
+## [S-02] Remove to unused imports
+
+**Description:**
+
+[AccessProtected.sol#L5](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/AccessProtected.sol#L5)
+[VTVLVesting.sol#L6](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L6)
+
+
+Recommendation:
+Remove to unused imports from AccessProtected.sol and VTVLVesting.sol
 
