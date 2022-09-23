@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Franfran",
+  "address": "0xdAaA1Ba6839a7F04061dA8805De5800B152Def2F",
+  "risk": "2",
+  "title": "Owner can always mint an infinite amount of tokens",
+  "issueId": 229,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/229"
+}
