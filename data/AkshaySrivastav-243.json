@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "AkshaySrivastav",
+  "address": "0xfe0411905eb82da73281ff7c462f193b2e942d15",
+  "risk": "2",
+  "title": "Claim revoking transaction can be frontrunned by the user who is getting revoked.",
+  "issueId": 243,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/243"
+}
