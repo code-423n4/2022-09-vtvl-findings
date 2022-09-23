@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Chom",
+  "address": "0xc4c459668fb29833d7dee997d7d347e2634c9cef",
+  "risk": "3",
+  "title": "The claim can't be recreated for the same address after a claim has been revoked.",
+  "issueId": 224,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/224"
+}
