@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "Rolezn",
+  "address": "0xf6850e8f677d320159bb8c84f40dd136d03a2ebb",
+  "risk": "3",
+  "title": "Mint at will even though initial maxSupply has been set",
+  "issueId": 267,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/267"
+}
