@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "ayeslick",
+  "address": "0xA47053EDf2037f563b98E29007dB5F1485A6916D",
+  "risk": "3",
+  "title": "An admin can revoke the claim of a given claimant at any time then withdraw the claim due to said claimant.",
+  "issueId": 296,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/296"
+}
