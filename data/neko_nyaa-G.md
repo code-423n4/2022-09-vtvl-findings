@@ -30,19 +30,13 @@ Saves one Gsset (20000 gas) on construction, as well as an SLOAD (2100 slot) rea
 
 ### [G-02] Using `!= 0` for non-zero uint comparison takes less gas than `>0`
 
-Two instances
-
-```solidity=
-if(initialSupply_ > 0) 
-```
-
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L31
-
-```solidity=
-if(mintableSupply > 0)
-```
-
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/token/VariableSupplyERC20Token.sol#L40
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L256
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L257
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L263
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L449
 
 ### [G-03] `_admins`: Using `bool` data type for storage incurs extra gas overhead
 
@@ -73,4 +67,9 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
 ### [G-05] `++i` costs less gas than `i++`
 
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L353
+
+### [G-06] `require` statements with `&&` can be split into multiple requires to save gas
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L344
+
 
