@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "KIntern_NA",
+  "address": "0x9cD641c50320Ad533a07f6bAFE8b313599D071AE",
+  "risk": "2",
+  "title": "can not recreate new claim for user although this user's claim was revoked or ended before.",
+  "issueId": 209,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/209"
+}
