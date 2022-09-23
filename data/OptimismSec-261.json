@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "OptimismSec",
+  "address": "0xa3707d01100C11f866117b941e71b81084D63A16",
+  "risk": "3",
+  "title": "Admin can mint as many tokens as they want because `mintableSupply` can be reduce to zero",
+  "issueId": 261,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/261"
+}
