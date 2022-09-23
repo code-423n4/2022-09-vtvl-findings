@@ -3,10 +3,11 @@
 **Context**: [`VTVLVesting.sol`](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol)
 
 **Description**:
-Elastic supply tokens could dynamically adjust their price, supply, user's balance, etc. Such a mechanism makes a DeFi system complex, while many security accidnets are caused by the elastic tokens. For example, a DEX using deflationary token must double check the token transfer amount when taking swap action because of the difference of actual transfer amount and parameter.
+Elastic supply tokens could dynamically adjust their price, supply, user's balance, etc. Such a mechanism makes a DeFi system complex, while many security accidents are caused by the elastic tokens. For example, a DEX using deflationary token must double check the token transfer amount when taking swap action because of the difference of actual transfer amount and parameter.
 
 **Recommendation**:
 In terms of confidentiality, integrity and availability, it is highly recommend that one should not use elastic supply tokens & [weird-ERC20 tokens](https://github.com/d-xo/weird-erc20).
+
 
 
 ## [NAZ-L2] Unsafe Type Casting
