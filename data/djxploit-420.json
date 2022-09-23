@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "djxploit",
+  "address": "0x2635bbab233b9a1cd7703e6c4b80fe39055971d6",
+  "risk": "2",
+  "title": "The protocol doesn't support fee-on transfer ERC20 tokens",
+  "issueId": 420,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/420"
+}
