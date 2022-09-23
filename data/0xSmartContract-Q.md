@@ -162,6 +162,14 @@ Recommended Mitigation Steps add to Blacklist function and modifier
 
 
 
+## [S-01] Remove TODO
+
+**Context:**
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L266
+[VTVLVesting.sol#L266](https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L266)
+
+**Description:**
+Code architecture, incentives, and error handling/reporting questions/issues should be resolved before deployment
 
 
 
