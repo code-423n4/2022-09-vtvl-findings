@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "async",
+  "address": "0x7841f2064bbaf90127ca0eed5b004020bf9ca819",
+  "risk": "2",
+  "title": "Contracts inheriting AccessProtected can be left without an Admin",
+  "issueId": 214,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/214"
+}
