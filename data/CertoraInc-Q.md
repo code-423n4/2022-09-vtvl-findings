@@ -1,0 +1,5 @@
+# QA Report
+* A TODO comment is left on [line 266](https://github.com/code-423n4/2022-09-vtvl/blob/f68b7f3e61dad0d873b5b5a1e8126b839afeab5f/contracts/VTVLVesting.sol#L266) - `// Potential TODO: sanity check, if _linearVestAmount == 0, should we perhaps force that start and end ts are the same?`
+* ETH can get locked in the contract - consider adding a function for the owners to withdraw ETH. ETH can be in the contract pre-deployment or be transferred through self destruct or block rewards.
+* `uint112` used for amounts can limit amount of tokens that can be vested. There are token with high number of decimals. The maximum amount of tokens that can be vested if the token has 18 decimals is 5192296858534828. If the token has 24 decimals, the maximum amount is 5192296858.534828. This is even more limited because it needs to be multiplied by the duration of the vest and fit in uint112, which can lead to overflow, so the actual amount is much smaller.
+* The admin can (by accident or not) create a claim for address(this), which is the address of the contract. This claim won't be withdraw-able and the funds will be locked in the contract.
