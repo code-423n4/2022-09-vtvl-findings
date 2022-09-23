@@ -22,9 +22,13 @@ Remove these types devs comments after changes have been made or development dec
 
 I was not sure what level to report this as I am still learning so I have left it to the judges to judge validity and threat level to the project 
 
-Only check _linerVestAmount is > 0, as your only ever going to return if said amount it greater than 0, this does not return a check for _cliffAmount  (this should return a value of INVALID_CLIFF_AMOUNT as well to return a check on both values) even though your asking for a check to be carried out on _linearVestAmount + _cliffAmount, return a value for both "INVALID_VESTED_AMOUNT + INVALID_CLIFF_AMOUNT" if they are both invalid, 
+Only check _linerVestAmount is > 0, as your only returning a check on this value in the return statement, this does not return a check for _cliffAmount  (this should return a value of INVALID_CLIFF_AMOUNT as well as INVALID_VESTED_AMOUNT for the return statement to be valid for both values) even though your asking for a check to be carried out on _linearVestAmount + _cliffAmount.
 
-however I also noted that there is the possibilty for _cliffAmount to not be zero if there is vesting??? (_cliffReleaseTimestamp - The timestamp when the cliff is released (must be <= _startTimestamp, or 0 if no vesting)) also noted by the dev cliffAmount - The amount released at _cliffReleaseTimestamp. Can be 0 if _cliffReleaseTimestamp is also 0, what if _cliffReleaseTimestamp is not 0 and there is vesting .. would be safer to do a check on just _linearVestAmount as noted by the dev so that claim creation cannot break accidentelty or otherwise
+However I also noted that there is the possibilty for _cliffAmount to not be zero if there is vesting??? 
+(_cliffReleaseTimestamp - The timestamp when the cliff is released (must be <= _startTimestamp, or 0 if no vesting)) 
+Also noted by the dev 
+//cliffAmount - The amount released at _cliffReleaseTimestamp. Can be 0 if _cliffReleaseTimestamp is also 0, 
+if _cliffReleaseTimestamp is not 0 and there is vesting .. wouldnt it be safer to do a check on just _linearVestAmount as noted by the dev so that claim creation cannot be broken.
 
 Also checking just the one value will make the contract slightly cheaper to deploy decreasing overall cost on the life cycle of the project.
 
