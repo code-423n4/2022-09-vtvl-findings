@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "cryptonue",
+  "address": "0xabcde0360abcba45098125e55437b005ae5df46f",
+  "risk": "3",
+  "title": "VariableSupplyERC20Token will always be unlimited supply",
+  "issueId": 220,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/220"
+}
