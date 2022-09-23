@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "dipp",
+  "address": "0x675454ae78d25632fc26763fa9cb72a99cb0a36e",
+  "risk": "2",
+  "title": "```withdrawOtherTokens``` may be used to withdraw all vesting tokens from the contract",
+  "issueId": 404,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/404"
+}
