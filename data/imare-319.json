@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "imare",
+  "address": "0x6584dbfb545cc95633bfe906dfce28b2d65581ee",
+  "risk": "2",
+  "title": "Cannot reuse recipient address",
+  "issueId": 319,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/319"
+}
