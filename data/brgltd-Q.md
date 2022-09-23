@@ -12,11 +12,11 @@ AccessProtected.sol,
 VTVLVesting.sol
 ```
 
-Consider updating solidity to 0.8.15 or 0.8.16 and also updaging OpenZeppelin to  ensure the latest security fixes at the compiler and library level are included in the contracts.
+Consider updating solidity to 0.8.15 or 0.8.16 and also updating OpenZeppelin to  ensure the latest security fixes at the compiler and library level are included in the contracts.
 
 # [NC-02] Emit an event for critical functions
 
-The function `withdrawOtherToken` could emit an even when a succesful transfer occrurs to facilitade off chain monitoring.
+The function `withdrawOtherToken` could emit an event when a succesful transfer occurs to facilitade off chain monitoring.
 
 ```solidity
 function withdrawOtherToken(IERC20 _otherTokenAddress) external onlyAdmin {
@@ -180,4 +180,4 @@ https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L
 
 Note that `createClaim` has twice as many spaces than `createClaimBatch` for it's function arguments. Also note that the ending parenthesis is not following the same pattern.
 
-Consider using only one coding style, ideally with the usage a formatter and linter (e.g. prettier and solhint).
+Consider using only one coding style, ideally with the usage of a formatter and linter (e.g. prettier and solhint).
