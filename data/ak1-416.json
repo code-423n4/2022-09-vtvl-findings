@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "ak1",
+  "address": "0xf7a08c2c341bde5e17103d4780d1b465011a2a31",
+  "risk": "2",
+  "title": "No clarity about the type of tokens that was used for vesting.",
+  "issueId": 416,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/416"
+}
