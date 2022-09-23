@@ -16,3 +16,9 @@ For it is not called anywhere within the contract. Also on the docs it is extern
 
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L398
 https://github.com/code-423n4/2022-09-vtvl/blob/main/docs/VTVLVesting.md#withdrawadmin
+
+### [N-03] Event `ClaimRevoked`'s `revocationTimestamp` is redundant
+
+The `revocationTimestamp` emitted is nothing more than `block.timestamp` of the operation, which information is readily available when querying or subscribing to events.
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L436
