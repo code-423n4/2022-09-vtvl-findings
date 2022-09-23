@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "0xDecorativePineapple",
+  "address": "0xbfaeba1ca7a282d27607a8353801cdaf35305a91",
+  "risk": "2",
+  "title": "Admin power of `AccessProtected.sol` contract can be lost",
+  "issueId": 411,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/411"
+}
