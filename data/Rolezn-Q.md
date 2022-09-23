@@ -1,4 +1,4 @@
-Total Low Severity: 2
+Total Low Severity: 3
 Total Non-Critical Severity: 7
 
 
@@ -36,7 +36,19 @@ https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/VTVLVesting.sol#L
 Consider adding zero-address checks in the mentioned codebase.
 
 
-## (3) No need to check for true in require
+## (3) Contracts are not using their OZ Upgradeable counterparts
+
+Severity: Low
+
+The non-upgradeable standard version of OpenZeppelin’s library, such as ERC20, Ownable, Context and SafeERC20 are inherited / used by the contracts.
+
+It would be safer to use the upgradeable versions of the library contracts to avoid unexpected behaviour.
+
+## Recommended Mitigation Steps
+
+Where applicable, use the contracts from @openzeppelin/contracts-upgradeable instead of @openzeppelin/contracts.
+
+## (4) No need to check for true in require
 
 Severity: Non-Critical
 
@@ -52,7 +64,7 @@ https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/VTVLVesting.sol#L
 
 	require(_claim.isActive, "NO_ACTIVE_CLAIM");
 
-## (4) Avoid Floating Pragmas: The Version Should Be Locked
+## (5) Avoid Floating Pragmas: The Version Should Be Locked
 
 Severity: Non-Critical
 
@@ -62,7 +74,7 @@ Severity: Non-Critical
 https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/token/VariableSupplyERC20Token.sol#L2
 
 
-## (5) Implementation contract may not be initialized
+## (6) Implementation contract may not be initialized
 
 OpenZeppelin recommends that the initializer modifier be applied to constructors. 
 Per OZs Post implementation contract should be initialized to avoid potential griefs or exploits.
@@ -86,7 +98,7 @@ https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/token/VariableSup
 
 
 
-## (6) Public Functions Not Called By The Contract Should Be Declared External Instead
+## (7) Public Functions Not Called By The Contract Should Be Declared External Instead
 
 Severity: Non-Critical
 
@@ -105,7 +117,7 @@ https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/VTVLVesting.sol#L
 https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/token/VariableSupplyERC20Token.sol#L36
 
 
-## (7) Commented Code
+## (8) Commented Code
 
 Severity: Non-Critical
 
@@ -126,7 +138,7 @@ https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/VTVLVesting.sol#L
 	// uint constant _initialSupply = 100 * (10**18);
 https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/token/FullPremintERC20Token.sol#L9
 
-## (8) TODOs
+## (9) TODOs
 
 Severity: Non-Critical
 
@@ -136,7 +148,7 @@ Severity: Non-Critical
 https://github.com/code-423n4/2022-09-vtvl/tree/main/contracts/VTVLVesting.sol#L266
 
 
-## (9) Non-usage of specific imports
+## (10) Non-usage of specific imports
 
 Severity: Non-Critical
 
