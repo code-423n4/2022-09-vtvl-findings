@@ -67,6 +67,7 @@ contracts/VTVLVesting.sol#L302        numTokensReservedForVesting += allocatedAm
 ```
 
 6 - Amount is not validated
+==
 
 Implement the required statement that amount should be greater than 0 in order to save gas.
 
