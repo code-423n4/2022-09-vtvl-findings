@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "rbserver",
+  "address": "0x4bd9605a3e546f3400df2c2be7b1c775aeea56bd",
+  "risk": "3",
+  "title": "Employee can be unable to withdraw claimable amount that she or he deserves after admin revokes her or his claim",
+  "issueId": 228,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/228"
+}
