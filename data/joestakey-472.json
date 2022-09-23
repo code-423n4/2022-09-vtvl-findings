@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "joestakey",
+  "address": "0xa9c2ce9dcc090af921fb0a1f874962f65a4b6d9b",
+  "risk": "2",
+  "title": "Limited supply of `VariableSupplyERC20Token` can be bypassed to mint an infinite amount of tokens",
+  "issueId": 472,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/472"
+}
