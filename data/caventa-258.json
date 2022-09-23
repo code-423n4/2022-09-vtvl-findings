@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "caventa",
+  "address": "0x813bfbd9725d385cbe3e39af0e01f076f7b654fb",
+  "risk": "2",
+  "title": "Claim number value should be checked in the createClaimsBatch function.",
+  "issueId": 258,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/258"
+}
