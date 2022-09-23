@@ -390,3 +390,12 @@ index c564c6f..39dc30e 100644
          uint112[] memory _cliffAmounts) 
 ```
 
+---
+
+## Use custom errors rather than revert()/require() strings to save gas
+
+Custom errors are available from solidity version 0.8.4. Custom errors save ~50 gas each time they’re hitby avoiding having to allocate and store the revert string. Not defining the strings also save deployment gas.
+
+See more in
+- https://blog.soliditylang.org/2021/04/21/custom-errors/#errors-in-depth
+
