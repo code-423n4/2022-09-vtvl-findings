@@ -59,3 +59,13 @@ VTVLVesting.sol:381:        usrClaim.amountWithdrawn += amountRemaining;
 VTVLVesting.sol:383:        numTokensReservedForVesting -= amountRemaining;
 VTVLVesting.sol:433:        numTokensReservedForVesting -= amountRemaining; // Reduces the allocation
 ```
+## [G-8] Add a check if `new admin` is already a `admin` or the `one to be removed` is already
+`removed or non exist` this will save gas by avoiding rewrite of same data
+```solidity
+AccessProtected.sol:39: function setAdmin(address admin, bool isEnabled) public onlyAdmin {
+AccessProtected.sol:40:         require(admin != address(0), "INVALID_ADDRESS");
+AccessProtected.sol:41:         _admins[admin] = isEnabled;
+AccessProtected.sol:42:         emit AdminAccessSet(admin, isEnabled);
+AccessProtected.sol:43:     }
+
+```
