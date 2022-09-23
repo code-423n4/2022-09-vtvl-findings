@@ -49,3 +49,12 @@ https://github.com/code-423n4/2022-04-dualityfocus-findings/issues/33
 
 
 -----
+## _safeMint() should be used rather than _mint() wherever possible
+
+### Instances
+```
+token/VariableSupplyERC20Token.sol:45:        _mint(account, amount);
+token/FullPremintERC20Token.sol:12:        _mint(_msgSender(), supply_);
+``` 
+### Recommendations:
+Use _safeMint() instead of _mint().
