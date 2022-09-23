@@ -69,3 +69,8 @@ uint256 public numTokensReservedForVesting;
 ```
 
 https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L27
+
+### [G-05] `++i` costs less gas than `i++`
+
+https://github.com/code-423n4/2022-09-vtvl/blob/main/contracts/VTVLVesting.sol#L353
+
