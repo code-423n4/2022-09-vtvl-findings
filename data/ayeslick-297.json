@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "ayeslick",
+  "address": "0xA47053EDf2037f563b98E29007dB5F1485A6916D",
+  "risk": "2",
+  "title": "A malicious admin can revoke access of other admins",
+  "issueId": 297,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/297"
+}
