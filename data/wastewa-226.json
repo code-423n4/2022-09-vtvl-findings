@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "wastewa",
+  "address": "0xaaadbbac0c00f44d658a5d5526da7e4b9a4dfef2",
+  "risk": "3",
+  "title": "Can overflow linear vest calculation and lock up funds",
+  "issueId": 226,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/226"
+}
