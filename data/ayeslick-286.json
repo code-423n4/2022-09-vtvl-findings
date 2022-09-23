@@ -1,0 +1,9 @@
+{
+  "contest": 164,
+  "handle": "ayeslick",
+  "address": "0xA47053EDf2037f563b98E29007dB5F1485A6916D",
+  "risk": "2",
+  "title": "```startTimestamp``` & ```endTimestamp``` can be less than current ```block.timestamp```. ",
+  "issueId": 286,
+  "issueUrl": "https://github.com/code-423n4/2022-09-vtvl-findings/issues/286"
+}
