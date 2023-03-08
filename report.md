@@ -1,3 +1,11 @@
+---
+sponsor: "VTVL"
+slug: "2022-09-vtvl"
+date: "2022-11-01"
+title: "VTVL contest"
+findings: "https://github.com/code-423n4/2022-09-vtvl-findings/issues"
+contest: 164
+---
 
 # Overview
 
